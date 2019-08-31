@@ -1,5 +1,6 @@
 package com.hotelcorp.controller;
 
+import com.hotelcorp.business.BookingHotelService;
 import com.hotelcorp.business.BookingService;
 import com.hotelcorp.business.HotelService;
 import com.hotelcorp.data.Booking;
@@ -18,12 +19,12 @@ import java.util.stream.StreamSupport;
 public class QueryController {
 
     private final BookingService bookingService;
-    private final HotelService hotelService;
+    private final BookingHotelService bookingHotelService;
 
     @Autowired
-    public QueryController(BookingService bookingService, HotelService hotelService) {
+    public QueryController(BookingService bookingService, BookingHotelService bookingHotelService) {
         this.bookingService = bookingService;
-        this.hotelService = hotelService;
+        this.bookingHotelService = bookingHotelService;
     }
 
     @GetMapping(value = "/bookings", params = "hotelId")
@@ -37,12 +38,7 @@ public class QueryController {
     }
 
     @GetMapping(value = "/hotels", params = "customerLastName")
-    public Iterable<Hotel> getBookingsByCustomerLastName(@RequestParam("customerLastName") String lastName) {
-        final var hotelIds = StreamSupport
-                .stream(bookingService.getBookingsForCustomer(lastName).spliterator(), false)
-                .map(Booking::getHotel)
-                .map(Hotel::getId)
-                .collect(Collectors.toSet());
-        return hotelService.getHotels(hotelIds);
+    public Iterable<Hotel> getHotelsForBookingsByCustomerLastName(@RequestParam("customerLastName") String lastName) {
+        return bookingHotelService.getHotelsForBookingsByCustomerLastName(lastName);
     }
 }

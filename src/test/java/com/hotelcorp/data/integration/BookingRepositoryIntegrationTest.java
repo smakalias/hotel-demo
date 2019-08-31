@@ -1,5 +1,9 @@
-package com.hotelcorp.data;
+package com.hotelcorp.data.integration;
 
+import com.hotelcorp.data.Booking;
+import com.hotelcorp.data.BookingPriceStatistics;
+import com.hotelcorp.data.BookingRepository;
+import com.hotelcorp.data.Hotel;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

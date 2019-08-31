@@ -1,5 +1,7 @@
-package com.hotelcorp.data;
+package com.hotelcorp.data.integration;
 
+import com.hotelcorp.data.Hotel;
+import com.hotelcorp.data.HotelRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

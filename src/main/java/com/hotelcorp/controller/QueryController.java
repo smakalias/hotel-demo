@@ -28,12 +28,12 @@ public class QueryController {
     }
 
     @GetMapping(value = "/bookings", params = "hotelId")
-    public Iterable<Booking> getBookingsOfHotel(@RequestParam Long hotelId) {
+    public Iterable<Booking> getBookingsByHotelId(@RequestParam Long hotelId) {
         return bookingService.getBookingsForHotel(hotelId);
     }
 
     @GetMapping(value = "/bookings", params = "hotelName")
-    public Iterable<Booking> getBookingsByHotel(@RequestParam String hotelName) {
+    public Iterable<Booking> getBookingsByHotelName(@RequestParam String hotelName) {
         return bookingService.getBookingsForHotel(hotelName);
     }
 
